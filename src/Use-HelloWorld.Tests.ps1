@@ -1,7 +1,7 @@
-$moduleRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
-Import-Module "$moduleRoot\src\Use-HelloWorld.psm1" -Force
+# $moduleRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+# Import-Module "$moduleRoot\src\Use-HelloWorld.psm1" -Force
 
-Describe 'Use-HelloWorld' {
+Describe 'Helloworld' {
 
 #Testing folder
         it "Has a C:\Program Files\MySQL" {
