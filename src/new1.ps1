@@ -1,6 +1,7 @@
-Describe "SQL Configuration" {
-   
-    Context "General Config" {
+$moduleRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+Import-Module "$moduleRoot\src\Use-HelloWorld.psm1" -Force
+
+Describe 'Use-HelloWorld' {
 
 #Testing folder
         it "Has a C:\Program Files\MySQL" {
@@ -61,62 +62,5 @@ Describe "SQL Configuration" {
 
         }
 				
-    }
-	
-	
-
-    }
-#Testing services are running
-
-    $Services = @(
-        'DHCP Client', 'DNS Client','Network Connections', 'Plug and Play', 'RpcSs', 'lanmanserver',
-        'LmHosts', 'Lanmanworkstation', 'MySQL80', 'WinRM'
-    )
-
- 
-describe 'ACME Services' {
-    context 'Service Availability' {
-        $Services | ForEach-Object {
-            it "[$_] should be running" {
-                (Get-Service $_).Status | Should Be running
-            }
-        }
-    }
+    
 }
-
-#testing ports are up and running
-describe 'ACME Ports' {
-    context 'Listening ports' {
-        135, 3306, 445 | Foreach-Object {
-            it "Port [$_] is listening" {
-                $portListening = (Test-NetConnection -Port $_ -ComputerName DESKTOP-D46023H).TcpTestSucceeded
-                $portListening | Should Be $true
-            }
-        }
-    }
-}
-
-
-
-#testing dns server services
-
-$nameservers = "8.8.8.8","208.67.222.222"
-
-Describe 'DNS External GSLB ZONE Checks' {
-    foreach ($nameserver in $nameservers)
-    {
-        Context "Checking $nameserver for A records" {
-            It "<name> should return <expected>" -TestCases @(
-            @{Name = 'discussions.citrix.com'; Expected = '23.29.105.237'}
-            @{Name = 'citrix.com'; Expected = '162.221.156.156'}
-            @{Name = 'www.google.com'; Expected = ' 216.58.196.164'}
-            ) {
-            param ($name, $Expected)
-        
-            $record = Resolve-DnsName $name -type DESKTOP-D46023H -server $nameservers
-            $record.IPAddress | Should Be $Expected
-            }
-
-        }
-    }
-    }
