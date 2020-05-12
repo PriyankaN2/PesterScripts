@@ -11,12 +11,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- powershell:  # inline script
+  workingDirectory:  #
+  displayName:  #
+  failOnStderr:  #
+  errorActionPreference:  #
+  ignoreLASTEXITCODE:  #
+  env:  # mapping of environment variables to add
 
-- task: Pester@9
-  inputs:
-    scriptFolder: '$(System.DefaultWorkingDirectory)\*'
-    resultsFile: '$(System.DefaultWorkingDirectory)\Test-Pester.XML'
-    usePSCore: False
 
     
 
