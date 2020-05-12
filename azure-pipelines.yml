@@ -13,7 +13,7 @@ pool:
 steps:
 - task: PowerShell@2
   inputs:
-    filePath: 'https://github.com/PriyankaN2/PesterScripts/blob/master/test.ps1'
+    filePath: 'test.ps1'
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
