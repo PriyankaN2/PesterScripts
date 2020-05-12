@@ -16,8 +16,8 @@ Describe 'Helloworld' {
         }
 
 #Testing path
-        it "Has a C:\Program Files\MySQL\MySQL Workbench 8.0 CE\data" {
-            Test-Path "C:\Program Files\MySQL\MySQL Workbench 8.0 CE\data" |
+        it "Has a https://dev.azure.com/44976/44976/" {
+            Test-Path "https://dev.azure.com/44976/44976/" |
                 Should Be True
         }
 		
